@@ -9,6 +9,9 @@ React 19 + Vite + TypeScript + Tailwind CSS 4 · React Router · Lucide · **Neo
 1. **Production Neon** : si `DATABASE_URL` est présent côté serveur, le site lit/écrit dans Neon via `/api/public`, `/api/auth`, `/api/admin` (JWT requis, contrôles côté serveur).
 2. **Démonstration locale** : sans `DATABASE_URL`, l’API renvoie 501 et le site bascule en mode local (données dans `localStorage` du navigateur, bannière visible). Connexion démo **locale uniquement** : `admin@demo.local` / `admin1234` — à ne jamais utiliser en production.
 
+## 🚀 Mise en ligne
+**Suivez [DEPLOIEMENT.md](DEPLOIEMENT.md) pas à pas** (Neon → Vercel → création admin → 8 tests de réception). Diagnostic rapide après déploiement : ouvrez `/api/health` sur votre URL Vercel.
+
 ## Démarrage local
 ```bash
 npm install
