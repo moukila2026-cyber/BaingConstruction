@@ -1,0 +1,7 @@
+-- BAING CONSTRUCTION INC — Schéma Neon (PostgreSQL) — NON destructif (IF NOT EXISTS)
+CREATE TABLE IF NOT EXISTS services(id text PRIMARY KEY, slug text UNIQUE NOT NULL, titre text NOT NULL, description text DEFAULT '', perimetre jsonb DEFAULT '[]', image text DEFAULT '', ordre int DEFAULT 99, publie boolean DEFAULT false, cta text DEFAULT 'Demander un devis');
+CREATE TABLE IF NOT EXISTS projets(id text PRIMARY KEY, titre text NOT NULL, categorie text NOT NULL, description text DEFAULT '', localisation text DEFAULT '', statut text DEFAULT '', image text DEFAULT '', ordre int DEFAULT 99, publie boolean DEFAULT false, illustratif boolean DEFAULT true);
+CREATE TABLE IF NOT EXISTS demandes(id text PRIMARY KEY, nom text NOT NULL, telephone text NOT NULL, email text DEFAULT '', entreprise text DEFAULT '', prestation text NOT NULL, lieu text DEFAULT '', description text NOT NULL, budget text DEFAULT '', delai text DEFAULT '', consentement boolean NOT NULL DEFAULT false, statut text DEFAULT 'nouvelle', note_interne text DEFAULT '', created_at timestamptz DEFAULT now());
+CREATE TABLE IF NOT EXISTS settings(cle text PRIMARY KEY, valeur jsonb NOT NULL);
+CREATE TABLE IF NOT EXISTS admins(id serial PRIMARY KEY, email text UNIQUE NOT NULL, password_hash text NOT NULL, created_at timestamptz DEFAULT now());
+-- Sécurité : accès uniquement via les fonctions serveur (DATABASE_URL côté serveur). Aucune clé Neon ne doit être exposée au navigateur (pas de VITE_ DATABASE_URL).
