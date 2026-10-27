@@ -30,7 +30,7 @@ const checks = [
   ['/a-propos', ['À propos de BAING CONSTRUCTION INC']],
   ['/realisations', ['Nos réalisations']],
   ['/contact', ['Contactez-nous']],
-  ['/admin/login', ['Espace administration', 'Se connecter']],
+  ['/admin/login', ['Espace administration', 'Se connecter', 'Afficher le mot de passe']],
   ['/mentions-legales', ['Mentions légales']],
   ['/confidentialite', ['Politique de confidentialité']],
   ['/page-inexistante', ['404', 'Page introuvable']],

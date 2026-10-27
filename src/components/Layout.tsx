@@ -99,17 +99,17 @@ export default function Layout() {
             <Link className="block py-1 text-sm hover:text-[#B58A52]" to="/services">Travaux publics</Link>
             <Link className="block py-1 text-sm hover:text-[#B58A52]" to="/services">Réseaux électriques</Link>
           </div>
-          <div>
+          <div className="relative">
             <h3 className="text-white font-bold mb-3">Contact</h3>
             <p className="text-sm">{settings.adresse}</p>
             <p className="text-sm mt-2">{settings.telephone}</p>
             <p className="text-sm">{settings.horaires}</p>
-            <Link
-              to="/admin/login"
-              className="mt-5 inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-[#B58A52] hover:bg-[#96703E] text-white font-bold px-5 py-3 rounded-full text-sm transition shadow-lg"
+            <a
+              href="/admin/login"
+              className="relative z-10 mt-5 flex w-full sm:w-auto items-center justify-center gap-2 bg-[#B58A52] hover:bg-[#96703E] text-white font-bold px-5 py-3.5 rounded-full text-sm transition shadow-lg"
             >
               <Lock size={15} /> Espace administration
-            </Link>
+            </a>
           </div>
         </div>
         <div className="border-t border-white/10">
