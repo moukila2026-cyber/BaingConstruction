@@ -40,10 +40,15 @@ vercel --prod
 `vercel.json` gère le routage SPA (les `/api/*` ne sont pas réécrits) et les en-têtes de sécurité.
 
 ## Remplacer les contenus de démonstration
-Images dans `public/images/` (générées pour la maquette) → remplacez par les photos réelles (mêmes noms ou via l’admin, champ image). Projets seed marqués « Exemple de présentation » (`illustratif`) → créez les vraies fiches dans `/admin/projets` puis supprimez les exemples. Coordonnées : `/admin/parametres` + cocher « vérifiées » après confirmation.
+Images dans `public/images/` (générées pour la maquette) → remplacez-les par les photos réelles depuis l’administration (`/admin/projets` et `/admin/services`, bouton **Téléverser une photo**). Projets seed marqués « Exemple de présentation » (`illustratif`) → modifiez-les en place ou créez les vraies fiches puis supprimez les exemples. Coordonnées : `/admin/parametres` + cocher « vérifiées » après confirmation.
+
+### Photos réelles : téléversement depuis l’admin
+- Le fichier choisi est **compressé dans le navigateur** (1600 px max, JPEG qualité 0,82, source ≤ 10 Mo) par `src/lib/image.ts`, puis enregistré dans le champ `image` de Neon (data URL) via l’API existante — aucun service de stockage externe à configurer.
+- Création, modification, publication/dépublication et suppression sont appliquées en base, puis l’interface et les données publiques sont **rechargées immédiatement** (resynchronisation automatique après chaque écriture et au retour sur l’onglet).
+- Pour un très grand volume de médias, migrer vers un stockage objet (Vercel Blob/S3) : seul `src/lib/image.ts` et le champ `image` seraient à adapter.
 
 ## Sécurité
-Validation client **et** serveur, JWT 8 h, bcrypt (coût 12), notes internes jamais exposées publiquement, secrets uniquement côté serveur, export CSV réservé à l’admin authentifié. Pièces jointes : volontairement via WhatsApp en démo ; en production, brancher un stockage privé avant d’activer tout upload.
+Validation client **et** serveur, JWT 8 h, bcrypt (coût 12), notes internes jamais exposées publiquement, secrets uniquement côté serveur, export CSV réservé à l’admin authentifié. Les images téléversées sont vérifiées (type MIME `image/*`, taille, compression) avant enregistrement ; les pièces jointes des demandes de devis restent volontairement gérées via WhatsApp.
 
 ## ChantierPilot
 Section « Du site web au suivi opérationnel des chantiers » → lien externe https://chantier-pilot.vercel.app/ . Aucune synchronisation, aucun partage de données.
